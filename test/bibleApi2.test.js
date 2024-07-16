@@ -90,15 +90,13 @@ describe('Outros testes e Diferentes Traduções (Bible API - Testes de Integra�
   test('Dever buscar o capítulo inteiro dos Salmos', async () => {
     const response = await axios.get(`${BASE_URL}/Psalms23`);
     expect(response.status).toBe(200);
-    expect(response.data.verses.length).toBeGreaterThan(0);
-    expect(response.data.verses[0].reference).toMatch(/Psalms 23:1/);
+    expect(response.data.verses.length).toBe(6);
   });
 
   test('Dever buscar o capítulo inteiro de Mateus', async () => {
     const response = await axios.get(`${BASE_URL}/Matthew5`);
     expect(response.status).toBe(200);
-    expect(response.data.verses.length).toBeGreaterThan(0);
-    expect(response.data.verses[0].reference).toMatch(/Matthew 5:1/);
+    expect(response.data.verses.length).toBe(48);
   });
 
 
