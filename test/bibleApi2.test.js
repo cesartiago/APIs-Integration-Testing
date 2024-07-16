@@ -1,4 +1,16 @@
-//Teste arquivo por arquivo, pois o servidor não aceita muitas requisições
+// -> Teste arquivo por arquivo, pois o servidor não aceita muitas requisições
+
+
+/*
+Oráculos que usamos:
+ https://www.ebooksbrasil.org/eLibris/biblia.html para a versão em português João Ferreira de Almeida.
+https://www.aionianbible.org/ para a versão Checa.
+
+https://vulsearch.sourceforge.net/html/Jo.html para a Clementine Latin Vulgate.
+
+E para as demais:
+https://www.biblegateway.com/ (versão “WEB” padrão,  KJV, Novo Testamento Cherokee).
+*/
 
 const axios = require('axios');
 
@@ -25,7 +37,7 @@ describe('Outros testes e Diferentes Traduções (Bible API - Testes de Integra�
 
   //Testando línguas diferentes (/versões)
   
-  // Cherokee - Novo Testamento Cherokee
+  // Cherokee - Novo Testamento Cherokee (índios norte-americanos)
   test('Deve buscar um versículo do Novo Testamento Cherokee', async () => {
     const response = await axios.get(`${BASE_URL}/ᎣᏍᏛ ᎧᏃᎮᏛ ᏣᏂ ᎤᏬᏪᎳᏅᎯ+3:16?translation=cherokee`);
     expect(response.status).toBe(200);
@@ -35,7 +47,7 @@ describe('Outros testes e Diferentes Traduções (Bible API - Testes de Integra�
     expect(response.data.text).toMatch('ᎾᏍᎩᏰᏃ ᏂᎦᎥᎩ ᎤᏁᎳᏅᎯ ᎤᎨᏳᏒᎩ ᎡᎶᎯ, ᏕᎤᏲᏒᎩ ᎤᏤᎵᎦ ᎤᏪᏥ ᎾᏍᎩ ᎤᏩᏒᎯᏳ ᎤᏕᏁᎸᎯ, ᎩᎶ ᎾᏍᎩ ᏱᎪᎯᏳᎲᏍᎦ ᎤᏲᎱᎯᏍᏗᏱ ᏂᎨᏒᎾ, ᎬᏂᏛᏉᏍᎩᏂ ᎤᏩᏛᏗ.');
   });
 
-  // Checo - Bíblia kralická
+  // Checo - Bíblia kralická (Tcheca)
   test('Deve buscar um versículo da Bíblia Tcheca kralická', async () => {
     const response = await axios.get(`${BASE_URL}/Jan+3:16?translation=bkr`);
     expect(response.status).toBe(200);
@@ -45,13 +57,13 @@ describe('Outros testes e Diferentes Traduções (Bible API - Testes de Integra�
     expect(response.data.text).toMatch('Nebo tak Bůh miloval svět, že Syna svého jednorozeného dal, aby každý, kdož věří v něho, nezahynul, ale měl život věčný.');
   });
 
-  // Inglês - Versão Padrão Americana (1901)
+  // Inglês -	American Standard Version (1901)
   test('Deve buscar um versículo da American Standard Version (ASV)', async () => {
     const response = await axios.get(`${BASE_URL}/john 3:16?translation=asv`);
     expect(response.status).toBe(200);
     expect(response.data.translation_id).toBe('asv');
     expect(response.data.reference).toBe('John 3:16');
-    expect(response.data.text).toMatch(/For God so loved the world/);
+    expect(response.data.text).toMatch(/For God so loved the world, that he gave his only begotten Son, that whosoever believeth on him should not perish, but have eternal life/);
   });
 
   // Português - João Ferreira de Almeida
@@ -60,7 +72,7 @@ describe('Outros testes e Diferentes Traduções (Bible API - Testes de Integra�
     expect(response.status).toBe(200);
     expect(response.data.translation_id).toBe('almeida');
     expect(response.data.reference).toBe('João 3:16');
-    expect(response.data.text).toMatch(/Porque Deus amou o mundo/);
+    expect(response.data.text).toMatch(/Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna./);
   });
 
   // Latim - Vulgata Latina Clementina

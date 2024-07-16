@@ -1,4 +1,16 @@
-//Teste arquivo por arquivo, pois o servidor não aceita muitas requisições
+// -> Teste arquivo por arquivo, pois o servidor não aceita muitas requisições
+
+
+/*
+Oráculos que usamos:
+ https://www.ebooksbrasil.org/eLibris/biblia.html para a versão em português João Ferreira de Almeida.
+https://www.aionianbible.org/ para a versão Checa.
+
+https://vulsearch.sourceforge.net/html/Jo.html para a Clementine Latin Vulgate.
+
+E para as demais:
+https://www.biblegateway.com/ (versão “WEB” padrão,  KJV, Novo Testamento Cherokee).
+*/
 
 const axios = require('axios');
 
