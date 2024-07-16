@@ -21,7 +21,7 @@ describe('Outros testes e Diferentes Traduções (Bible API - Testes de Integra�
   });
 
   // Cherokee - Novo Testamento Cherokee
-  test('Deveria buscar um versículo do Novo Testamento Cherokee', async () => {
+  test('Deve buscar um versículo do Novo Testamento Cherokee', async () => {
     const response = await axios.get(`${BASE_URL}/ᎣᏍᏛ ᎧᏃᎮᏛ ᏣᏂ ᎤᏬᏪᎳᏅᎯ+3:16?translation=cherokee`);
     expect(response.status).toBe(200);
     expect(response.data.translation_id).toBe('cherokee');
@@ -50,7 +50,7 @@ describe('Outros testes e Diferentes Traduções (Bible API - Testes de Integra�
   });
 
   // Português - João Ferreira de Almeida
-  test('Deveria buscar um verso do João Ferreira de Almeida', async () => {
+  test('Deve buscar um verso do João Ferreira de Almeida', async () => {
     const response = await axios.get(`${BASE_URL}/joao 3:16?translation=almeida`);
     expect(response.status).toBe(200);
     expect(response.data.translation_id).toBe('almeida');
@@ -59,7 +59,7 @@ describe('Outros testes e Diferentes Traduções (Bible API - Testes de Integra�
   });
 
   // Latim - Vulgata Latina Clementina
-  test('Deveria buscar um verso da Vulgata Latina Clementina', async () => {
+  test('Dever buscar um verso da Vulgata Latina Clementina', async () => {
     const response = await axios.get(`${BASE_URL}/Joannes+3:16?translation=clementine`);
     expect(response.status).toBe(200);
     expect(response.data.translation_id).toBe('clementine');
@@ -70,14 +70,14 @@ describe('Outros testes e Diferentes Traduções (Bible API - Testes de Integra�
 
   
   // Capítulos Inteiros
-  test('Should fetch entire chapter from Psalms', async () => {
+  test('Dever buscar o capítulo inteiro dos Salmos', async () => {
     const response = await axios.get(`${BASE_URL}/Psalms23`);
     expect(response.status).toBe(200);
     expect(response.data.verses.length).toBeGreaterThan(0);
     expect(response.data.verses[0].reference).toMatch(/Psalms 23:1/);
   });
 
-  test('Should fetch entire chapter from Matthew', async () => {
+  test('Dever buscar o capítulo inteiro de Mateus', async () => {
     const response = await axios.get(`${BASE_URL}/Matthew5`);
     expect(response.status).toBe(200);
     expect(response.data.verses.length).toBeGreaterThan(0);

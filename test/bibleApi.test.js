@@ -4,7 +4,7 @@ const BASE_URL = 'https://bible-api.com';
 
 describe('Bible API Tests', () => {
       // Versículos Únicos
-    test('Should fetch a single verse from Exodus', async () => {
+    test('Dever buscar um único verso do Êxodo', async () => {
       const response = await axios.get(`${BASE_URL}/exodus 20:13`);
       expect(response.status).toBe(200);
       expect(response.data).toHaveProperty('reference', 'Exodus 20:13');
@@ -52,7 +52,7 @@ describe('Bible API Tests', () => {
         expect(response.data.verses.length).toBeGreaterThan(0);
     });
 
-    test('Should fetch multiple ranges from Isaiah', async () => {
+    test('Deve buscar vários intervalos de Isaías', async () => {
         const response = await axios.get(`${BASE_URL}/Isaiah40:1-2,5-7`);
         expect(response.status).toBe(200);
         expect(response.data.verses.length).toBeGreaterThan(0);
