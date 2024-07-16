@@ -1,3 +1,5 @@
+//Teste arquivo por arquivo, pois o servidor não aceita muitas requisições
+
 const axios = require('axios');
 
 const BASE_URL = 'https://bible-api.com';
@@ -15,7 +17,7 @@ describe('Bible API Tests', () => {
         const response = await axios.get(`${BASE_URL}/genesis 1:1`);
         expect(response.status).toBe(200);
         expect(response.data).toHaveProperty('reference', 'Genesis 1:1');
-        expect(response.data.text).toMatch(/In the beginning/);
+        expect(response.data.text).toMatch(/In the beginning, God created the heavens and the earth/);
     });
 
     test('Deve buscar um único verso de João', async () => {
@@ -46,22 +48,24 @@ describe('Bible API Tests', () => {
         expect(response.data.text).toContain('Therefore I urge you, brothers, by the mercies of God, to present your bodies a living sacrifice, holy, acceptable to God, which is your spiritual service.');
     });
 
+    
+    test('Deve buscar vários intervalos de Isaías', async () => {
+        const response = await axios.get(`${BASE_URL}/Isaiah40:1-2,5-7`);
+        expect(response.status).toBe(200);
+        expect(response.data.verses.length).toBe(5); //5 versículos
+     });
+
     test('Deve buscar vários intervalos do livro de Hebreus', async () => {
         const response = await axios.get(`${BASE_URL}/Hebrews12:1-2,5-7,9,13:1-9&10`);
         expect(response.status).toBe(200);
         expect(response.data.verses.length).toBeGreaterThan(0);
-    });
 
-    test('Deve buscar vários intervalos de Isaías', async () => {
-        const response = await axios.get(`${BASE_URL}/Isaiah40:1-2,5-7`);
-        expect(response.status).toBe(200);
-        expect(response.data.verses.length).toBeGreaterThan(0);
-      });
+    });
   
       test('Deve buscar vários intervalos de Salmos', async () => {
           const response = await axios.get(`${BASE_URL}/Psalms23:1-2,4-6`);
           expect(response.status).toBe(200);
-          expect(response.data.verses.length).toBeGreaterThan(0);
+          expect(response.data.verses.length).toBe(5); //5 versículos
       });
 
     // Nomes Abreviados de Livros
@@ -94,7 +98,7 @@ describe('Bible API Tests', () => {
         responseType: 'text'
         });
         expect(response.status).toBe(200);
-        expect(response.data).toMatch(/^func\(/);
+        expect(response.data).toMatch(/^func\(/); //Este teste assegura que a API da Bíblia é capaz de lidar corretamente com solicitações de versículos usando JSONP, garantindo que o retorno de chamada especificado (func) seja incluído na resposta conforme esperado.
     });
 
         //Outros
@@ -108,7 +112,7 @@ describe('Bible API Tests', () => {
         test('Verso Aleatório', async () => {
             const response = await axios.get(`${BASE_URL}/?random=verse`);
             expect(response.data).toHaveProperty('text');
-            expect(response.data).toHaveProperty('reference');
+            expect(response.data).toHaveProperty('AQAreference');
         });
     
 

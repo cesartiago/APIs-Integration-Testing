@@ -1,3 +1,5 @@
+//Teste arquivo por arquivo, pois o servidor não aceita muitas requisições
+
 const axios = require('axios');
 
 const BASE_URL = 'https://bible-api.com';
