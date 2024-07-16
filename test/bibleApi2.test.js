@@ -20,6 +20,9 @@ describe('Outros testes e Diferentes Traduções (Bible API - Testes de Integra�
     }
   });
 
+
+  //Testando línguas diferentes (/versões)
+  
   // Cherokee - Novo Testamento Cherokee
   test('Deve buscar um versículo do Novo Testamento Cherokee', async () => {
     const response = await axios.get(`${BASE_URL}/ᎣᏍᏛ ᎧᏃᎮᏛ ᏣᏂ ᎤᏬᏪᎳᏅᎯ+3:16?translation=cherokee`);

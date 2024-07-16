@@ -25,7 +25,7 @@ describe('Bible API Tests', () => {
         expect(response.data.text).toMatch(/As Moses lifted up the serpent in the wilderness, even so must the Son of Man be lifted up,/);
     });
 
-    test('Verso Único: John 3:16', async () => {
+    test('Deve buscar um único verso de João: John 3:16', async () => {
         const response = await axios.get(`${BASE_URL}/john+3:16`);
         expect(response.data.reference).toBe('John 3:16');
         expect(response.data.text).toContain('For God so loved the world, that he gave his one and only Son, that whoever believes in him should not perish, but have eternal life.');
@@ -79,23 +79,7 @@ describe('Bible API Tests', () => {
         expect(response.data).toHaveProperty('reference', 'Genesis 1:1');
         expect(response.data.text).toMatch(/In the beginning/);
     });
-
-
-    //Outros
-    test('Verso com Tradução Diferente em ingles: John 3:16 KJV', async () => {
-        const response = await axios.get(`${BASE_URL}/john+3:16?translation=kjv`);
-        expect(response.data.reference).toBe('John 3:16');
-        expect(response.data.translation_id).toBe('kjv');
-        expect(response.data.text).toContain('For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life.');
-    });
-
-    test('Verso Aleatório', async () => {
-        const response = await axios.get(`${BASE_URL}/?random=verse`);
-        expect(response.data).toHaveProperty('text');
-        expect(response.data).toHaveProperty('reference');
-    });
-
-    
+  
     // Números de Versículos
     test('Deve buscar versículo com números de versículos incluídos', async () => {
         const response = await axios.get(`${BASE_URL}/john 3:17?verse_numbers=true`);
@@ -112,6 +96,21 @@ describe('Bible API Tests', () => {
         expect(response.status).toBe(200);
         expect(response.data).toMatch(/^func\(/);
     });
+
+        //Outros
+        test('Verso com Tradução Diferente em ingles: John 3:16 KJV', async () => {
+            const response = await axios.get(`${BASE_URL}/john+3:16?translation=kjv`);
+            expect(response.data.reference).toBe('John 3:16');
+            expect(response.data.translation_id).toBe('kjv');
+            expect(response.data.text).toContain('For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life.');
+        });
+    
+        test('Verso Aleatório', async () => {
+            const response = await axios.get(`${BASE_URL}/?random=verse`);
+            expect(response.data).toHaveProperty('text');
+            expect(response.data).toHaveProperty('reference');
+        });
+    
 
     // test('Verso Inexistente', async () => {
     //     const response = await axios.get(`${BASE_URL}/john+999:999`);
