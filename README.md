@@ -1,9 +1,9 @@
 # APIs-Integration-Testing
 
-#Para instalar o jest:
+# Para instalar o jest:
 npm install jest --save-dev (para instalar o jest)
 
-#Você deve testar um arquivo de teste, e depois o outro. (Recomendamos que você renomei, de forma a deixar apenas um como .test). Pois a API não permite fazer muitas requisições ao mesmo tempo.
+# Você deve testar um arquivo de teste, e depois o outro. (Recomendamos que você renomei, de forma a deixar apenas um como .test). Pois a API não permite fazer muitas requisições ao mesmo tempo.
 
 
 
