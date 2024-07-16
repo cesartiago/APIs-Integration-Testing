@@ -3,7 +3,7 @@ const axios = require('axios');
 const BASE_URL = 'https://bible-api.com';
 
 describe('Outros testes e Diferentes Traduções (Bible API - Testes de Integração)', () => {
-    // Erros Esperados
+  // Erros Esperados
  test('Deve tratar nome de livro inválido', async () => {
     try {
       await axios.get(`${BASE_URL}/invalidbook 1:1`);

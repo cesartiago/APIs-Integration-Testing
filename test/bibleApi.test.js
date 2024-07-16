@@ -3,7 +3,7 @@ const axios = require('axios');
 const BASE_URL = 'https://bible-api.com';
 
 describe('Bible API Tests', () => {
-      // Versículos Únicos
+    // Versículos Únicos
     test('Dever buscar um único verso do Êxodo', async () => {
       const response = await axios.get(`${BASE_URL}/exodus 20:13`);
       expect(response.status).toBe(200);
@@ -64,7 +64,7 @@ describe('Bible API Tests', () => {
           expect(response.data.verses.length).toBeGreaterThan(0);
       });
 
-        // Nomes Abreviados de Livros
+    // Nomes Abreviados de Livros
     test('Deve buscar o versículo usando o nome abreviado do livro (para João)', async () => {
         const response = await axios.get(`${BASE_URL}/jn 3:15`);
         expect(response.status).toBe(200);
