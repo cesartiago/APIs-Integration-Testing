@@ -1,9 +1,11 @@
 # APIs-Integration-Testing
+
+#Para instalar o jest:
 npm install jest --save-dev (para instalar o jest)
 
-Você deve testar um arquivo de teste, e depois o outro. (Recomendamos que você renomei, de forma a deixar apenas um como .test). Pois a API não permite fazer muitas requisições ao mesmo tempo.
+#Você deve testar um arquivo de teste, e depois o outro. (Recomendamos que você renomei, de forma a deixar apenas um como .test). Pois a API não permite fazer muitas requisições ao mesmo tempo.
 
-Documento: ideia inicial de Teste de Integração Usando Axios e Jest
+#Documento: ideia inicial de Teste de Integração Usando Axios e Jest
 Alunos: Tiago César, Helon de Franca
 IC844 - TÓPICOS ESPECIAIS EM ENGENHARIA DE SOFTWARE - T01 (2024.1 - 35T23)
 
