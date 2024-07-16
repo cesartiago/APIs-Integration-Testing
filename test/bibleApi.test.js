@@ -69,4 +69,64 @@ describe('Bible API Tests', () => {
         expect(response.data.translation_id).toBe('almeida');
         expect(response.data.text).toContain('Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna.');
     });
+
+     // Versículos Únicos
+    test('Deve buscar um único versículo do Gênesis', async () => {
+        const response = await axios.get(`${BASE_URL}/genesis 1:1`);
+        expect(response.status).toBe(200);
+        expect(response.data).toHaveProperty('reference', 'Genesis 1:1');
+        expect(response.data.text).toMatch(/In the beginning/);
+    });
+
+    test('Deve buscar um único verso de João', async () => {
+        const response = await axios.get(`${BASE_URL}/john 3:16`);
+        expect(response.status).toBe(200);
+        expect(response.data).toHaveProperty('reference', 'John 3:16');
+        expect(response.data.text).toMatch(/For God so loved the world/);
+    });
+
+    // Nomes Abreviados de Livros
+    test('Deve buscar o versículo usando o nome abreviado do livro (para João)', async () => {
+        const response = await axios.get(`${BASE_URL}/jn 3:15`);
+        expect(response.status).toBe(200);
+        expect(response.data).toHaveProperty('reference', 'John 3:15');
+        expect(response.data.text).toMatch('that whoever believes in him should not perish, but have eternal life.');
+    });
+
+    test('Deve buscar o versículo usando o nome abreviado do livro (para Gênesis)', async () => {
+        const response = await axios.get(`${BASE_URL}/gen 1:1`);
+        expect(response.status).toBe(200);
+        expect(response.data).toHaveProperty('reference', 'Genesis 1:1');
+        expect(response.data.text).toMatch(/In the beginning/);
+    });
+
+    // Ranges de Versículos
+    test('Deve buscar vários intervalos do livro de Hebreus', async () => {
+        const response = await axios.get(`${BASE_URL}/Hebrews12:1-2,5-7,9,13:1-9&10`);
+        expect(response.status).toBe(200);
+        expect(response.data.verses.length).toBeGreaterThan(0);
+    });
+
+    test('Deve buscar vários intervalos de Salmos', async () => {
+        const response = await axios.get(`${BASE_URL}/Psalms23:1-2,4-6`);
+        expect(response.status).toBe(200);
+        expect(response.data.verses.length).toBeGreaterThan(0);
+    });
+
+    // Números de Versículos
+    test('Deve buscar versículo com números de versículos incluídos', async () => {
+        const response = await axios.get(`${BASE_URL}/john 3:17?verse_numbers=true`);
+        expect(response.status).toBe(200);
+        expect(response.data).toHaveProperty('reference', 'John 3:17');
+        expect(response.data.text).toContain('17')
+    });
+
+    // JSONP
+    test('Deve buscar verso com retorno de chamada JSONP', async () => {
+        const response = await axios.get(`${BASE_URL}/john 3:18?callback=func`, {
+        responseType: 'text'
+        });
+        expect(response.status).toBe(200);
+        expect(response.data).toMatch(/^func\(/);
+    });
 });
