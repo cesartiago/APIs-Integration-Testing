@@ -124,7 +124,8 @@ describe('Bible API Tests', () => {
         test('Verso Aleatório', async () => {
             const response = await axios.get(`${BASE_URL}/?random=verse`);
             expect(response.data).toHaveProperty('text');
-            expect(response.data).toHaveProperty('AQAreference');
+            expect(response.data).toHaveProperty('reference');
+            expect(response.data).toHaveProperty('verses');
         });
     
 
